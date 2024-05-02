@@ -14,6 +14,11 @@
     font-family: 'Outfit Variable';
 }
 
+h1, h2, h3, h4, p {
+    margin: 0px;
+}
+
+/* HEADER */
 header {
     display: flex;
     flex-direction: column;
@@ -50,4 +55,103 @@ nav {
 #greetingsName {
     color: #FFFFFF;
     width: 80dvw;
+}
+
+/* MAIN */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.recentNotes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80dvw;
+}
+
+/* RECENT NOTES */
+.recentNotes-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.recentNotes-title {
+    align-self: flex-start;
+    font-size: 20px;
+}
+
+.recentNotes-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #e7e7e7;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #FFFFFF;
+    width: 202px;
+    height: 172px;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.note-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.note-body {
+    margin-left: 10px;
+    margin-top: -25px;
+    overflow: hidden;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    color: #00000090;
+    font-size: 13px;
+}
+
+.newNote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    p {
+        font-weight: bold;
+    }
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.newNote:hover {
+    background-color: #333333;
+    gap: 20px;
+    
+    .newNote-svg {
+        animation: rotate 0.5s;
+    }
 }
