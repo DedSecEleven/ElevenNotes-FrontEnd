@@ -65,6 +65,7 @@ main {
     margin-top: 20px;
 }
 
+/* RECENT NOTES */
 .recentNotes {
     display: flex;
     justify-content: center;
@@ -72,7 +73,6 @@ main {
     width: 80dvw;
 }
 
-/* RECENT NOTES */
 .recentNotes-content {
     display: flex;
     flex-direction: column;
@@ -88,6 +88,9 @@ main {
 .recentNotes-container {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-wrap: wrap;
     gap: 20px;
     background-color: #e7e7e7;
     padding: 15px;
@@ -148,7 +151,7 @@ main {
 }
 
 .newNote:hover {
-    background-color: #333333;
+    background-color: #111111;
     gap: 20px;
     
     .newNote-svg {
