@@ -115,6 +115,27 @@ main {
     align-items: center;
     text-align: center;
     font-weight: bold;
+    position: relative;
+}
+
+.dropdown-options {
+    position: absolute;
+    right: 0px;
+}
+
+.note-title-options {
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.note-title-options:hover {
+    background-color: #e2e2e2;
 }
 
 .note-body {

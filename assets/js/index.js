@@ -1,5 +1,5 @@
-const usersUrl = "http://192.168.10.177:5202/api/users";
-const notesUrl = "http://192.168.10.177:5202/api/notes";
+const usersUrl = "http://localhost:5202/api/users";
+const notesUrl = "http://localhost:5202/api/notes";
 
 // UsuariolocalStorage
 let userName = localStorage.getItem("user");
@@ -82,9 +82,47 @@ const usersFetch = fetch(notesUrl)
         const noteTitle = document.createElement("div");
         noteTitle.classList.add("note-title");
 
+        
         const noteTitleP = document.createElement("p");
         noteTitleP.textContent = note.title;
         noteTitle.appendChild(noteTitleP);
+
+        // DropDown Options
+        const dropdownCenter = document.createElement("div");
+        dropdownCenter.className = "dropdown-center dropdown-options";
+
+        const noteTitleOptions = document.createElement("div");
+        noteTitleOptions.classList.add("note-title-options");
+        noteTitleOptions.setAttribute("data-bs-toggle", "dropdown");
+        noteTitleOptions.setAttribute("aria-expanded", "false");
+        noteTitleOptions.innerHTML = `<svg class="note-title-options-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="M16 12a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2"/></svg>`;
+        
+        const dropdownMenu = document.createElement("ul");
+        dropdownMenu.className = "dropdown-menu dropdown-menu-dark";
+
+        const dropdownMenuLi = document.createElement("li");
+        const dropdownMenuBtn = document.createElement("button");
+        dropdownMenuBtn.classList.add("dropdown-item");
+        dropdownMenuBtn.textContent = "Eliminar Nota";
+
+        dropdownMenuBtn.addEventListener("click", () => {
+            const confirmDelete = confirm(`¿Estás seguro de eliminar la nota "${note.title}"?`)
+
+            if (confirmDelete) {
+                fetch(`${notesUrl}/${note.id}`, {
+                    method: "DELETE"
+                }).then(
+                    alert(`Se eliminó correctamente la nota "${note.title}"`),
+                    location.reload()
+                );
+            }
+        })
+
+        dropdownMenuLi.appendChild(dropdownMenuBtn);
+        dropdownMenu.appendChild(dropdownMenuLi);
+
+        dropdownCenter.append(noteTitleOptions, dropdownMenu);
+        noteTitle.appendChild(dropdownCenter);
 
         // Div Nota Body
         const noteBody = document.createElement("div");
