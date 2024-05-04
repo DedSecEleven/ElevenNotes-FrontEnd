@@ -15,7 +15,6 @@
 }
 
 h1, h2, h3, h4, p {
-    color: #000000;
     margin: 0px;
 }
 
@@ -172,6 +171,7 @@ main {
 /* MODAL USER */
 .modal {
     margin-top: 25px;
+    color: #FFFFFF;
 }
 
 .modal-body {
