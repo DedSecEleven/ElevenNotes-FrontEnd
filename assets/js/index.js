@@ -1,5 +1,5 @@
-const usersUrl = "http://192.168.10.177:5202/api/users";
-const notesUrl = "http://192.168.10.177:5202/api/notes";
+const usersUrl = "http://localhost:5202/api/users";
+const notesUrl = "http://localhost:5202/api/notes";
 
 // UsuariolocalStorage
 let userName = localStorage.getItem("user");
@@ -99,7 +99,27 @@ const usersFetch = fetch(notesUrl)
         
         const dropdownMenu = document.createElement("ul");
         dropdownMenu.className = "dropdown-menu dropdown-menu-dark";
-        dropdownMenu.innerHTML = `<li><button id="changeUser" class="dropdown-item">Eliminar nota</button></li>`;
+
+        const dropdownMenuLi = document.createElement("li");
+        const dropdownMenuBtn = document.createElement("button");
+        dropdownMenuBtn.classList.add("dropdown-item");
+        dropdownMenuBtn.textContent = "Eliminar Nota";
+
+        dropdownMenuBtn.addEventListener("click", () => {
+            const confirmDelete = confirm(`¿Estás seguro de eliminar la nota "${note.title}"?`)
+
+            if (confirmDelete) {
+                fetch(`${notesUrl}/${note.id}`, {
+                    method: "DELETE"
+                }).then(
+                    alert(`Se eliminó correctamente la nota "${note.title}"`),
+                    location.reload()
+                );
+            }
+        })
+
+        dropdownMenuLi.appendChild(dropdownMenuBtn);
+        dropdownMenu.appendChild(dropdownMenuLi);
 
         dropdownCenter.append(noteTitleOptions, dropdownMenu);
         noteTitle.appendChild(dropdownCenter);
