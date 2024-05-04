@@ -15,6 +15,7 @@
 }
 
 h1, h2, h3, h4, p {
+    color: #000000;
     margin: 0px;
 }
 
@@ -110,6 +111,9 @@ main {
 }
 
 .note-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-weight: bold;
 }
@@ -132,13 +136,18 @@ main {
     justify-content: center;
     align-items: center;
     background-color: #000000;
-    color: #FFFFFF;
+    color: #000000;
     cursor: pointer;
     transition: all 0.3s;
 
     p {
         font-weight: bold;
     }
+
+}
+
+.newNote-svg {
+    margin-bottom: 34px;
 }
 
 @keyframes rotate{
@@ -152,9 +161,82 @@ main {
 
 .newNote:hover {
     background-color: #111111;
+    color: #FFFFFF;
     gap: 20px;
     
     .newNote-svg {
         animation: rotate 0.5s;
+    }
+}
+
+/* MODAL USER */
+.modal {
+    margin-top: 25px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 6px;
+}
+
+.greetingsModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.inputUser {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 5px 15px;
+    padding-right: 5px;
+    border-radius: 50px;
+    border: 0px;
+}
+
+.inputUser-input {
+    border: 0px;
+}
+
+.inputUser-input:focus {
+    outline: none;
+}
+
+.inputUser-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3px;
+    background-color: #000000;
+    border: 0px;
+    border-radius: 50px;
+    width: 45px;
+    height: 30px;
+}
+
+.inputUser-btn:hover svg {
+    animation: send 0.4s;
+}
+
+@keyframes send {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(5px);
     }
 }

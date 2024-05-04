@@ -1,3 +1,56 @@
+const usersUrl = "http://192.168.10.177:5202/api/users";
+const notesUrl = "http://192.168.10.177:5202/api/notes";
+
+// UsuariolocalStorage
+let userName = localStorage.getItem("user");
+const modalUser = document.querySelector("#modalUser");
+
+if (!userName) {
+    const userInputBTN = document.querySelector(".inputUser-btn");
+    const userInput = document.querySelector("#userInput");
+    const modalUserBS = new bootstrap.Modal(modalUser);
+
+    userInput.focus();
+    modalUserBS.show();
+
+    userInputBTN.addEventListener("click", () => {
+        if (userInput.value != "") {
+            localStorage.setItem("user", userInput.value);
+            userName = userInput.value;
+            greetings.textContent = `${dateName}, ${userName}`;
+            modalUserBS.hide();
+            
+            // CreateUser
+            datos = {
+                Name: userName,
+            }
+            
+            fetch(usersUrl).then(r => r.json()).then((d) => {
+                const userFind = d.find(user => user.name.toLowerCase() == userName.toLowerCase());
+                
+                if (!userFind) {
+                    fetch(usersUrl, {
+                        method: "POST",
+                        headers: { "Content-type": "application/json" },
+                        body: JSON.stringify(datos)
+                    }).then(r => r.json()).then((d) => {
+                        const userFindNew = d.find(user => user.name.toLowerCase() == userName.toLowerCase());
+                        localStorage.setItem("userID", userFindNew.id);
+                        console.log(localStorage.getItem("userID"));
+                    })
+                } else {
+                    localStorage.setItem("userID", userFind.id);
+                    console.log(localStorage.getItem("userID"));
+                }
+            });
+        } else {
+            alert("Ponga algo ps");
+        }
+
+    })
+}
+
+// SALUDO
 const date = new Date();
 let dateTime = date.getHours();
 const greetings = document.querySelector("#greetingsName");
@@ -11,19 +64,15 @@ if (dateTime >= 0 && dateTime < 12) {
     dateName = "Buenas noches";
 }
 
-greetings.textContent = `${dateName}, ${greetings.textContent}`;
+greetings.textContent = `${dateName}, ${!userName ? "Usuario": userName}`;
 
+// RECENT NOTES
 const recentNotes = document.querySelector(".recentNotes-container");
-
-const usersUrl = "http://localhost:5202/api/users";
-const notesUrl = "http://localhost:5202/api/notes";
 
 const usersFetch = fetch(notesUrl)
 .then(r => r.json())
 .then((d) => {
     d.forEach((note) => {
-        console.log(note.title);
-        console.log(note.content);
 
         // Div Nota
         const noteDiv = document.createElement("div");
@@ -73,6 +122,12 @@ const usersFetch = fetch(notesUrl)
         noteDiv.append(noteTitle, noteBody, noteFooter);
         recentNotes.appendChild(noteDiv);
     });
+});
 
-    
+// changeUser
+const changeUser = document.querySelector('#changeUser');
+
+changeUser.addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
 });
