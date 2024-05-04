@@ -82,9 +82,27 @@ const usersFetch = fetch(notesUrl)
         const noteTitle = document.createElement("div");
         noteTitle.classList.add("note-title");
 
+        
         const noteTitleP = document.createElement("p");
         noteTitleP.textContent = note.title;
         noteTitle.appendChild(noteTitleP);
+
+        // DropDown Options
+        const dropdownCenter = document.createElement("div");
+        dropdownCenter.className = "dropdown-center dropdown-options";
+
+        const noteTitleOptions = document.createElement("div");
+        noteTitleOptions.classList.add("note-title-options");
+        noteTitleOptions.setAttribute("data-bs-toggle", "dropdown");
+        noteTitleOptions.setAttribute("aria-expanded", "false");
+        noteTitleOptions.innerHTML = `<svg class="note-title-options-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="M16 12a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-6 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2"/></svg>`;
+        
+        const dropdownMenu = document.createElement("ul");
+        dropdownMenu.className = "dropdown-menu dropdown-menu-dark";
+        dropdownMenu.innerHTML = `<li><button id="changeUser" class="dropdown-item">Eliminar nota</button></li>`;
+
+        dropdownCenter.append(noteTitleOptions, dropdownMenu);
+        noteTitle.appendChild(dropdownCenter);
 
         // Div Nota Body
         const noteBody = document.createElement("div");
