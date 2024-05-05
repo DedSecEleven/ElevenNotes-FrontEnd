@@ -1,5 +1,5 @@
-const usersUrl = "http://localhost:5202/api/users";
-const notesUrl = "http://localhost:5202/api/notes";
+const usersUrl = "http://192.168.1.19:5202/api/users";
+const notesUrl = "http://192.168.1.19:5202/api/notes";
 
 // UsuariolocalStorage
 let userName = localStorage.getItem("user");
