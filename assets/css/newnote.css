@@ -1,0 +1,139 @@
+@font-face {
+    font-family: 'Outfit Variable';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/outfit:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Outfit Variable';
+}
+
+h1, h2, h3, h4, p {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.bg {
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 90 90'%3E%3Ccircle fill-opacity='0.25' fill='%23FFFFFF' cx='45' cy='45' r='5'/%3E%3Cg fill='%23000000' fill-opacity='0.25'%3E%3Ccircle cx='0' cy='90' r='5'/%3E%3Ccircle cx='90' cy='90' r='5'/%3E%3Ccircle cx='90' cy='0' r='5'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.italic {
+    font-style: italic;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 80dvw;
+    background-color: #000000;
+    padding: 7px;
+    border-radius: 6px;
+}
+
+.left-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-item {
+    height: min-content;
+    background-color: #fff;
+    padding: 5px;
+    width: min-content;
+    line-height: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.nav-item:hover {
+    box-shadow: 0px 0px 5px #0000002a;
+    background-color: #f0f0f0;
+}
+
+.nav-item-save {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    line-height: unset;
+}
+
+.nav-item-save path {
+    transition: fill 0.3s;
+}
+
+.nav-item-save:hover {
+    background-color: #5bba6f;
+    color: #fff;
+
+    path {
+        fill: #fff;
+    }
+}
+
+/* MAIN */
+main {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80dvw;
+}
+
+.inputTitle {
+    font-size: calc(1.375rem + 1.5vw);
+    font-weight: 500px;
+}
+
+.inputP {
+    font-size: 20px;
+}
+
+.inputTitle, .inputP {
+    color: #000000;
+    width: 100%;
+    resize: none;
+    overflow-y: hidden;
+    border: none;
+    background-color: transparent;
+}
+
+.inputTitle, .inputP:focus {
+    outline: none;
+}
