@@ -71,10 +71,53 @@ const recentNotes = document.querySelector(".recentNotes-container");
 const usersFetch = fetch(notesUrl)
 .then(r => r.json())
 .then((d) => {
+    // Orden Recientes
+    d.sort((a, b) => {
+        const fechaA = new Date(a.dateModified);
+        const fechaB = new Date(b.dateModified);
+
+        // Comparación por año
+        if (fechaA.getFullYear() !== fechaB.getFullYear()) {
+            return fechaB.getFullYear() - fechaA.getFullYear();
+        }
+
+        // Comparación por mes
+        if (fechaA.getMonth() !== fechaB.getMonth()) {
+            return fechaB.getMonth() - fechaA.getMonth();
+        }
+
+        // Comparación por día
+        if (fechaA.getDate() !== fechaB.getDate()) {
+            return fechaB.getDate() - fechaA.getDate();
+        }
+
+        // Comparación por hora
+        if (fechaA.getHours() !== fechaB.getHours()) {
+            return fechaB.getHours() - fechaA.getHours();
+        }
+
+        // Comparación por minutos
+        if (fechaA.getMinutes() !== fechaB.getMinutes()) {
+            return fechaB.getMinutes() - fechaA.getMinutes();
+        }
+
+        // Comparación por segundos
+        return fechaB.getSeconds() - fechaA.getSeconds();
+    });
+
     d.forEach((note) => {
 
         // Div Nota
         const noteDiv = document.createElement("div");
+
+        noteDiv.addEventListener("click", (e) => {
+            localStorage.setItem("noteID", note.id);
+
+            if(!e.target.closest(".dropdown-center")) {
+                location = "../../newnote/index.html";
+            }
+        })
+
         noteDiv.classList.add("note");
 
         // Div Nota Titulo
@@ -136,7 +179,7 @@ const usersFetch = fetch(notesUrl)
         noteFooter.classList.add("note-footer");
 
         const noteFooterName = document.createElement("p");
-        noteFooterName.textContent = note.userId;
+        // noteFooterName.textContent = note.userId;
 
         // Nombre del ID
         fetch (usersUrl).then(r => r.json()).then((d) => {
@@ -147,19 +190,38 @@ const usersFetch = fetch(notesUrl)
             })
         });
 
-        const noteFooterDate = document.createElement("p");
+        const noteFooterDate = document.createElement("div");
+        noteFooterDate.classList.add("note-footer-date");
         
         // Formatear Fecha
-        const formatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
         const dateFormated = new Date(note.dateModified);
+        
+        // Hora
+        const formatNumber = num => String(num).padStart(2, '0');
 
-        noteFooterDate.textContent = dateFormated.toLocaleDateString('es-ES', formatOptions);
+        const noteFooterTime = document.createElement("p");
+        const noteFooterDateModified = document.createElement("p");
+        noteFooterTime.textContent = `${formatNumber(dateFormated.getHours())}:${formatNumber(dateFormated.getMinutes())}:${formatNumber(dateFormated.getSeconds())}`;
+        
+        // Fecha
+        const formatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+        noteFooterDateModified.textContent = dateFormated.toLocaleDateString('es-ES', formatOptions);
+        noteFooterDate.append(noteFooterTime, noteFooterDateModified);
         noteFooter.append(noteFooterName, noteFooterDate);
 
         noteDiv.append(noteTitle, noteBody, noteFooter);
         recentNotes.appendChild(noteDiv);
     });
+
+    const newNoteContainer = document.querySelector('.newNote-container');
+    recentNotes.appendChild(newNoteContainer);
 });
+
+// NewNote
+const newNote = document.querySelector(".newNote");
+newNote.addEventListener("click", () => {
+    localStorage.removeItem("noteID");
+})
 
 // changeUser
 const changeUser = document.querySelector('#changeUser');

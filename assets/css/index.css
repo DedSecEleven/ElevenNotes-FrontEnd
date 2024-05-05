@@ -19,7 +19,12 @@ h1, h2, h3, h4, p {
 }
 
 a {
+    color: #000000;
     text-decoration: none;
+}
+
+.hidden {
+    display: none;
 }
 
 /* HEADER */
@@ -92,8 +97,6 @@ main {
 .recentNotes-container {
     display: flex;
     align-items: center;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
     flex-wrap: wrap;
     gap: 20px;
     background-color: #e7e7e7;
@@ -111,6 +114,13 @@ main {
     height: 172px;
     border-radius: 8px;
     padding: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.note:hover {
+    background-color: #ffffffc7;
+    box-shadow: 0px 0px 15px #0000004b;
 }
 
 .note-title {
@@ -120,9 +130,11 @@ main {
     text-align: center;
     font-weight: bold;
     position: relative;
-
+    
     p {
-        max-width: 121px;
+        max-width: 110px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -148,15 +160,31 @@ main {
 
 .note-body {
     margin-left: 10px;
-    margin-top: -25px;
+    width: 90%;
     overflow: hidden;
+    
+    p {
+        overflow-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .note-footer {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     color: #00000090;
     font-size: 13px;
+}
+
+.note-footer-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .newNote {
