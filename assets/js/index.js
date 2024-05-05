@@ -36,10 +36,12 @@ if (!userName) {
                     }).then(r => r.json()).then((newUser) => {
                         localStorage.setItem("userID", newUser.id);
                         console.log(localStorage.getItem("userID"));
+                        location.reload();
                     });
                 } else {
                     localStorage.setItem("userID", userFind.id);
                     console.log(localStorage.getItem("userID"));
+                    location.reload();
                 };
             });
         } else {
@@ -106,15 +108,17 @@ const usersFetch = fetch(notesUrl)
     });
 
     d.forEach((note) => {
-
         // Div Nota
         const noteDiv = document.createElement("div");
 
         noteDiv.addEventListener("click", (e) => {
-            localStorage.setItem("noteID", note.id);
-
-            if(!e.target.closest(".dropdown-center")) {
-                location = "../../newnote/index.html";
+            if (!e.target.closest(".dropdown-center")) {
+                if (note.userId == localStorage.getItem("userID")) {
+                    localStorage.setItem("noteID", note.id);
+                    location = "../../newnote/index.html";
+                } else {
+                    alert("No puedes editar una nota que no creaste")
+                }
             }
         })
 
@@ -148,15 +152,19 @@ const usersFetch = fetch(notesUrl)
         dropdownMenuBtn.textContent = "Eliminar Nota";
 
         dropdownMenuBtn.addEventListener("click", () => {
-            const confirmDelete = confirm(`¿Estás seguro de eliminar la nota "${note.title}"?`)
-
-            if (confirmDelete) {
-                fetch(`${notesUrl}/${note.id}`, {
-                    method: "DELETE"
-                }).then(
-                    alert(`Se eliminó correctamente la nota "${note.title}"`),
-                    location.reload()
-                );
+            if (note.userId == localStorage.getItem("userID")) {
+                const confirmDelete = confirm(`¿Estás seguro de eliminar la nota "${note.title}"?`)
+    
+                if (confirmDelete) {
+                    fetch(`${notesUrl}/${note.id}`, {
+                        method: "DELETE"
+                    }).then(
+                        alert(`Se eliminó correctamente la nota "${note.title}"`),
+                        location.reload()
+                    );
+                }
+            } else {
+                alert("No puedes Eliminar una nota que no creaste")
             }
         })
 
@@ -186,6 +194,10 @@ const usersFetch = fetch(notesUrl)
             d.forEach((u) => {
                 if (u.id === note.userId) {
                     noteFooterName.textContent = u.name;
+                }
+
+                if (note.userId == localStorage.getItem("userID")) {
+                    noteFooterName.style = "color: #000; font-weight: 500";
                 }
             })
         });
