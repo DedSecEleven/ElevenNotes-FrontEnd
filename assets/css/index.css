@@ -120,6 +120,10 @@ main {
     text-align: center;
     font-weight: bold;
     position: relative;
+
+    p {
+        max-width: 121px;
+    }
 }
 
 .dropdown-options {

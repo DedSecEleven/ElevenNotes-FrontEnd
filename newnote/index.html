@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/Favicon.svg" type="image/x-icon">
     <title>ElevenNotes - New Note</title>
 </head>
-<body>
+<body class="bg">
     <header>
         <nav>
             <div class="left-content">
@@ -31,8 +31,9 @@
             </div>
 
             <div class="right-content">
-                <div class="nav-item">
+                <div class="nav-item nav-item-save" id="saveNote">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#000000" d="M21 7v12q0 .825-.587 1.413T19 21H5q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h12zm-9 11q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-6-8h9V6H6z"/></svg>
+                    <p>Guardar</p>
                 </div>
             </div>
         </nav>
@@ -41,11 +42,11 @@
     <main>
         <section class="main-content">
             <div class="title">
-                <textarea class="inputTitle" type="text" placeholder="Título" rows="1"></textarea>
+                <textarea class="inputTitle" type="text" placeholder="Título" rows="1" autofocus></textarea>
             </div>
     
             <div class="paragraph">
-                <textarea class="inputP" type="text" placeholder="Escribe algo..." rows="1"></textarea>
+                <textarea class="inputP" type="text" placeholder="Escribe algo..." rows="2"></textarea>
             </div>
         </section>
     </main>

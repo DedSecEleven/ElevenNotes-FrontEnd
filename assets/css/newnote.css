@@ -22,6 +22,27 @@ a {
     text-decoration: none;
 }
 
+.bg {
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 90 90'%3E%3Ccircle fill-opacity='0.25' fill='%23FFFFFF' cx='45' cy='45' r='5'/%3E%3Cg fill='%23000000' fill-opacity='0.25'%3E%3Ccircle cx='0' cy='90' r='5'/%3E%3Ccircle cx='90' cy='90' r='5'/%3E%3Ccircle cx='90' cy='0' r='5'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.italic {
+    font-style: italic;
+}
+
 /* HEADER */
 header {
     display: flex;
@@ -33,29 +54,52 @@ nav {
     display: flex;
     justify-content: space-between;
     width: 80dvw;
-    background-color: #dddddd;
-    padding: 10px;
+    background-color: #000000;
+    padding: 7px;
     border-radius: 6px;
 }
 
 .left-content {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
 .nav-item {
+    height: min-content;
     background-color: #fff;
     padding: 5px;
     width: min-content;
     line-height: 0px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
 .nav-item:hover {
     box-shadow: 0px 0px 5px #0000002a;
     background-color: #f0f0f0;
+}
+
+.nav-item-save {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+    line-height: unset;
+}
+
+.nav-item-save path {
+    transition: fill 0.3s;
+}
+
+.nav-item-save:hover {
+    background-color: #5bba6f;
+    color: #fff;
+
+    path {
+        fill: #fff;
+    }
 }
 
 /* MAIN */
@@ -77,11 +121,17 @@ main {
     font-weight: 500px;
 }
 
+.inputP {
+    font-size: 20px;
+}
+
 .inputTitle, .inputP {
+    color: #000000;
     width: 100%;
     resize: none;
     overflow-y: hidden;
     border: none;
+    background-color: transparent;
 }
 
 .inputTitle, .inputP:focus {
