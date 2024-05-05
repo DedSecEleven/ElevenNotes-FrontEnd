@@ -22,26 +22,25 @@ if (!userName) {
             
             // CreateUser
             datos = {
-                Name: userName,
+                name: userName,
             }
             
             fetch(usersUrl).then(r => r.json()).then((d) => {
-                const userFind = d.find(user => user.name.toLowerCase() == userName.toLowerCase());
+                const userFind = d.find(u => u.name.toLowerCase() == userName.toLowerCase());
                 
                 if (!userFind) {
                     fetch(usersUrl, {
                         method: "POST",
                         headers: { "Content-type": "application/json" },
                         body: JSON.stringify(datos)
-                    }).then(r => r.json()).then((d) => {
-                        const userFindNew = d.find(user => user.name.toLowerCase() == userName.toLowerCase());
-                        localStorage.setItem("userID", userFindNew.id);
+                    }).then(r => r.json()).then((newUser) => {
+                        localStorage.setItem("userID", newUser.id);
                         console.log(localStorage.getItem("userID"));
-                    })
+                    });
                 } else {
                     localStorage.setItem("userID", userFind.id);
                     console.log(localStorage.getItem("userID"));
-                }
+                };
             });
         } else {
             alert("Ponga algo ps");
