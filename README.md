@@ -16,4 +16,4 @@ Antes de poder disfrutar de ElevenNotes es necesesario realizar algunas configur
 dotnet run
 ```
 
-###  ¡Listo eso es todo 😼! dale [Click Aquí](eleven-notes.vercel.app) para empezar a crear tus propias notas 🙃
+###  ¡Listo eso es todo 😼! dale [Click Aquí](http://eleven-notes.vercel.app) para empezar a crear tus propias notas 🙃
