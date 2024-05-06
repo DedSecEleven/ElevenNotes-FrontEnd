@@ -10,7 +10,7 @@ Antes de poder usar ElevenNotes es necesario realizar algunas configuraciones
 
 > 💡 Para poder iniciar el proyecto es necesario tener instalado [.NET](https://dotnet.microsoft.com/es-es/download)
 
-- Ir al repositorio [ElevenNotes-BackEnd](github.com/DedSecEleven/ElevenNotes-BackEnd) y clonarlo
+- Ir al repositorio [ElevenNotes-BackEnd](https://github.com/DedSecEleven/ElevenNotes-BackEnd) y clonarlo
 - Ir a la raíz ./ElevenNotes-BackEnd
 - Abrir la terminal y ejecutar el siguiente comando:
 
