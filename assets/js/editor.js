@@ -1,6 +1,13 @@
 const notesUrl = "http://localhost:5202/api/notes";
 const noteID = localStorage.getItem('noteID');
 
+let noteHide = localStorage.getItem('noteHide');
+if (noteHide == "true") {
+    noteHide = true;
+} else {
+    noteHide = false;
+}
+
 // NotyF
 var notyf = new Notyf();
 var notyfServer = new Notyf({
@@ -39,6 +46,7 @@ saveNote.addEventListener("click", () => {
             content: inputP.value,
             userID: user,
             dateModified: date,
+            hide: noteHide,
         }
     
         if (noteID) {
@@ -58,6 +66,7 @@ saveNote.addEventListener("click", () => {
                 content: inputP.value,
                 userID: user,
                 dateModified: date,
+                hide: noteHide,
             }
     
             notyf.success("La nota se creo correctamente");
