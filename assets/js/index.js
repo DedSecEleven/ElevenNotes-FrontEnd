@@ -1,6 +1,12 @@
 const usersUrl = "http://localhost:5202/api/users";
 const notesUrl = "http://localhost:5202/api/notes";
 
+// NotyF
+var notyf = new Notyf();
+var notyfServer = new Notyf({
+    duration: 10000
+});
+
 // UsuariolocalStorage
 let userName = localStorage.getItem("user");
 const modalUser = document.querySelector("#modalUser");
@@ -36,16 +42,24 @@ if (!userName) {
                     }).then(r => r.json()).then((newUser) => {
                         localStorage.setItem("userID", newUser.id);
                         console.log(localStorage.getItem("userID"));
-                        location.reload();
+                        notyf.success('Se ha creado un nuevo usuario');
+                        setTimeout(() => {
+                            location.reload()
+                        },2000)
                     });
                 } else {
                     localStorage.setItem("userID", userFind.id);
                     console.log(localStorage.getItem("userID"));
-                    location.reload();
+                    notyf.success('Has ingresado correctamente');
+                    setTimeout(() => {
+                        location.reload()
+                    },2000)
                 };
+            }).catch(e => {
+                notyfServer.error('Hubo un error en el servidor')
             });
         } else {
-            alert("Ponga algo ps");
+            notyf.error('Ponga algo ps');
         }
 
     })
@@ -117,7 +131,7 @@ const usersFetch = fetch(notesUrl)
                     localStorage.setItem("noteID", note.id);
                     location = "../../newnote/index.html";
                 } else {
-                    alert("No puedes editar una nota que no creaste")
+                    notyf.error("No puedes editar una nota que no creaste");
                 }
             }
         })
@@ -159,12 +173,14 @@ const usersFetch = fetch(notesUrl)
                     fetch(`${notesUrl}/${note.id}`, {
                         method: "DELETE"
                     }).then(
-                        alert(`Se eliminó correctamente la nota "${note.title}"`),
-                        location.reload()
+                        notyf.success(`Se eliminó correctamente la nota "${note.title}"`),
+                        setTimeout(() => {
+                            location.reload()
+                        },2000)
                     );
                 }
             } else {
-                alert("No puedes Eliminar una nota que no creaste")
+                notyf.error("No puedes eliminar una nota que no creaste");
             }
         })
 
@@ -227,6 +243,8 @@ const usersFetch = fetch(notesUrl)
 
     const newNoteContainer = document.querySelector('.newNote-container');
     recentNotes.appendChild(newNoteContainer);
+}).catch(e => {
+    notyfServer.error('Hubo un error en el servidor')
 });
 
 // NewNote
