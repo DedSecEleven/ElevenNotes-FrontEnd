@@ -24,7 +24,6 @@ if (!userName) {
             localStorage.setItem("user", userInput.value);
             userName = userInput.value;
             greetings.textContent = `${dateName}, ${userName}`;
-            modalUserBS.hide();
             
             // CreateUser
             datos = {
@@ -129,7 +128,7 @@ const usersFetch = fetch(notesUrl)
             if (!e.target.closest(".dropdown-center")) {
                 if (note.userId == localStorage.getItem("userID")) {
                     localStorage.setItem("noteID", note.id);
-                    location = "../../newnote/index.html";
+                    location = "../../editor/index.html";
                 } else {
                     notyf.error("No puedes editar una nota que no creaste");
                 }
