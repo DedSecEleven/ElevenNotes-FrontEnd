@@ -87,6 +87,13 @@ nav {
     padding: 5px 10px;
     gap: 5px;
     line-height: unset;
+    
+    height: min-content;
+    background-color: #fff;
+    width: min-content;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
 .nav-item-save path {
